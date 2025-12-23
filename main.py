@@ -22,10 +22,27 @@ from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filte
 
 load_dotenv()
 
+# ====== AUTO-CREATE DIRECTORIES ======
+def ensure_directories():
+    """Create all necessary directories automatically on startup"""
+    directories = [
+        "config",
+        "memory",
+        "memory/users", 
+        "memory/archived"
+    ]
+    
+    for directory in directories:
+        os.makedirs(directory, exist_ok=True)
+        print(f"✅ Created directory: {directory}")
+
+# Call this at the beginning
+ensure_directories()
+
 # ====== ENVIRONMENT VARIABLES ======
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 HF_API_KEY = os.getenv("HF_API_KEY")
-DEV_PASSWORD = os.getenv("DEVELOPER_PASSWORD", "")
+DEVELOPER_PASSWORD = os.getenv("DEVELOPER_PASSWORD", "")
 
 # ====== CONFIGURATION LOADING ======
 def load_config(filepath: str, default: Optional[Dict] = None) -> Dict:
@@ -972,8 +989,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Initialize vocabulary learner
     vocab_learner = VocabularyLearner(user_id)
     
-    # Developer unlock
-    if text == DEV_PASSWORD:
+    # Developer unlock - NOW FROM .env
+    if text == DEVELOPER_PASSWORD:
         context.bot_data["dev_unlocked"] = True
         await update.message.reply_text("🔓 Developer mode unlocked!")
         return
@@ -1187,15 +1204,16 @@ async def main():
         print("❌ HF_API_KEY not found in .env")
         return
     
+    if not DEVELOPER_PASSWORD:
+        print("⚠️ DEVELOPER_PASSWORD not set in .env")
+    
     bot_name = BOT_CONFIG.get("bot_name", "සමාලි")
     print(f"🤖 {bot_name} bot starting...")
-    print("⚡ Async version with httpx")
+    print("⚡ Auto-creating directories...")
+    print("🔒 Password from .env file")
     print("🎭 Mistral-7B-Instruct format with [INST] tags")
     print("💖 Natural affection system")
     print("🧠 Long-term memory + Vocabulary learning")
-    print("🔒 Protected memories system")
-    print("😠 Anger system: තරහ")
-    print("😢 Sadness system: දුක after anger")
     
     try:
         app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
