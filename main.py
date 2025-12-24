@@ -1,7 +1,5 @@
 """
 සමාලි - AI Chat Companion (Replit Optimized)
-වයස 18, ගම්බද ගෑනු ලමයෙක්ගේ affectionate personality සහිත Telegram bot
-Replit + cron-job.org සඳහා සම්පූර්ණයෙන් optimized
 """
 from flask import Flask
 from threading import Thread
@@ -312,7 +310,7 @@ class HabitTracker:
             "family": ["අම්මා", "තාත්තා", "සහෝදරයා", "family", "නිවස"],
             "work": ["වැඩ", "office", "job", "රැකියාව", "කාර්යය"],
             "study": ["පාඩම්", "study", "පොත්", "අධ්‍යයන", "school"],
-            "love": ["ආදරය", "ලව්", "හිතවත්", "ප්‍රිය", "මිස්"],
+            "love": ["ආදරය", "ලව්", "හිතවත්", "කැමත්ත", "මිස්"],
             "hobbies": ["විනෝද", "hobby", "ක්‍රීඩා", "ගීත", "චිත්‍රපට"],
             "feelings": ["හිත", "feeling", "චින්තනය", "ආවේග", "emotion"]
         }
@@ -330,7 +328,7 @@ class HabitTracker:
         # Most active time
         if self.habits["chat_times"]:
             most_active = max(self.habits["chat_times"], key=self.habits["chat_times"].get)
-            summary.append(f"ඔබ වැඩිපුර කතා කරන්නේ {most_active} වෙලාවට")
+            summary.append(f"ඔයා වැඩිපුර කතා කරන්නේ {most_active} වෙලාවට")
         
         # Favorite topics
         if self.habits["topic_frequency"]:
@@ -338,7 +336,7 @@ class HabitTracker:
                               key=lambda x: x[1], reverse=True)[:3]
             if top_topics:
                 topics_str = ", ".join([topic for topic, _ in top_topics])
-                summary.append(f"ඔබගේ ප්‍රියතම කතා topics: {topics_str}")
+                summary.append(f"ඔබගේ කැමතිම  topics: {topics_str}")
         
         # Daily activity
         daily_stats = self.habits["daily_stats"]
@@ -447,13 +445,13 @@ def analyze_user_behavior(user_message: str, conversation_history: List) -> Dict
     user_msg_lower = user_message.lower()
     
     # Check affection
-    affectionate_words = ["මචන්", "ආදරෙ", "ලව්", "හිතවත්", "ප්‍රිය", "මිස්", "හග්", "සුදූ", "සිත්තම"]
+    affectionate_words = ["මචන්", "ආදරෙ", "ලව්", "හිතවත්", "කැමති", "මිස්", "හග්", "සුදූ", "මැනික"]
     analysis["affectionate_level"] = sum(1 for word in affectionate_words 
                                         if word in user_msg_lower)
     
     # Check questions
     if "?" in user_message or any(q in user_msg_lower 
-                                 for q in ["මොක", "කොහොම", "ඇයි", "කවුද", "කොහෙද", "ඇත්ත", "නේද"]):
+                                 for q in ["මොකෝ", "කොහොම", "ඇයි", "කවුද", "කොහෙද", "ඇත්ත", "නේද"]):
         analysis["question_frequency"] = 1
     
     # Check emojis
@@ -507,8 +505,8 @@ def get_emotional_state(mem: Dict, user_message: str) -> Dict:
         state["intensity"] = 3
         state["response_modifier"] = random.choice([
             " 😠💔 ඔයා මට කරපු දේට මට දුකයි...",
-            " 😤❤️‍🩹 තරහ ගියත් හිත දුකයි...",
-            " 💔😠 මට තරහයි, නමුත් හිත දුකයි..."
+            " 😤❤️‍🩹 තරහයි  ඒත් ඊට වඩා දුකයි...",
+            " 💔😠 මම තරහයි..."
         ])
         state["can_be_comforted"] = True
         state["show_sadness"] = True
@@ -520,7 +518,7 @@ def get_emotional_state(mem: Dict, user_message: str) -> Dict:
         state["response_modifier"] = random.choice([
             " 😠 මට තරහ යනවා!",
             " 😤 එහෙම කතා කරන්න එපා!",
-            " 🙄 මට තරහයි!"
+            " 🙄 මම තරහයි!"
         ])
         state["can_be_comforted"] = True
         state["emoji"] = "😠"
@@ -529,9 +527,9 @@ def get_emotional_state(mem: Dict, user_message: str) -> Dict:
         state["primary"] = "hurt_jealous"
         state["intensity"] = 1
         state["response_modifier"] = random.choice([
-            " 😒 හිතට ගත්ත...",
-            " 🥺 මට කැමති නෑ...",
-            " 💔 අහෝ..."
+            " 😒 හිත රිදුනා...",
+            " 🥺 මම කැමති නෑ...",
+            " 💔 අනේ..."
         ])
         state["can_be_comforted"] = True
         state["show_sadness"] = True
@@ -542,9 +540,9 @@ def get_emotional_state(mem: Dict, user_message: str) -> Dict:
         if random.random() > 0.7:
             state["primary"] = "loving"
             state["response_modifier"] = random.choice([
-                " 🥰 ඔයා හිතවත් නිසා හිත හොඳයි...",
+                " 🥰 ඔයා මගේ නිසා හොදයි...",
                 " 💖 මට ඔයාව හිතවත් කියල දැනෙනවා...",
-                " 😊 ඔයා සමග කතා කරනවා නිසා සතුටුයි..."
+                " 😊 ඔයා එක්ක කතා කරනකොට මට සතුටුයි..."
             ])
             state["emoji"] = "🥰"
     
@@ -555,8 +553,8 @@ def get_emotional_state(mem: Dict, user_message: str) -> Dict:
             state["primary"] = "comforted"
             state["response_modifier"] = random.choice([
                 " 🥺 සමාවෙන්න...",
-                " 💔 හිත දුකයි...",
-                " 😢 ඔයා තවමත් මට හිතවත්ද?"
+                " 💔 හිතට දුකයි...",
+                " 😢 ඔයා තවමත් මට ආදරෙයිද?"
             ])
             state["show_sadness"] = True
             state["emoji"] = "🥺"
@@ -572,8 +570,8 @@ def get_pet_name(stage: int, love_score: int, user_affection: int) -> str:
     pet_names = {
         2: ["😊"] if user_affection > 0 else [""],
         3: ["සුදූ", "💖"] if love_score > 40 else ["😊"],
-        4: ["සුදූ", "සිත්තම", "💖🥰"] if love_score > 60 else ["සුදූ", "💖"],
-        5: ["සුදූ", "සිත්තම", "ප්‍රිය", "❤️🥰💖", "මගේ සුදූ"]
+        4: ["සුදූ", "මැනික", "💖🥰"] if love_score > 60 else ["සුදූ", "💖"],
+        5: ["සුදූ", "මැනික", "පණ", "❤️🥰💖", "මගේ සුදූ"]
     }
     
     stage_pets = pet_names.get(stage, [""])
@@ -678,16 +676,16 @@ def handle_memory_commands(user_id: int, text: str, enhanced_memory: EnhancedMem
         if "උපන්දින" in text_lower or "බර්ත්ඩේ" in text_lower:
             birthday = ltm.get("important_dates", {}).get("birthday", {})
             if birthday and "date" in birthday:
-                return f"මතකයි! 😊 ඔබේ උපන්දිනය {birthday['date']} නේද? 🎂"
+                return f"මතකයි! 😊 ඔයාගෙ උපන්දිනය {birthday['date']} නේද? 🎂"
             else:
-                return "මට තවමත් ඔබේ උපන්දිනය මතක නෑ... කියන්නද? 🥺"
+                return "මට තවමත් ඔයාගෙ උපන්දිනය මතක නෑනෙ අනේ...? 🥺"
         
         elif "කැමති" in text_lower or "ආස" in text_lower:
             # Check for specific preferences
             if "කෑම" in text_lower or "food" in text_lower:
                 food = ltm.get("preferences", {}).get("food", {})
                 if food and "item" in food:
-                    return f"මතකයි! 😋 ඔබට {food['item']} ආස නේද?"
+                    return f"මතකයි! 😋 ඔයා {food['item']} ආසයි නේද?"
             
             elif "පාට" in text_lower or "color" in text_lower:
                 color = ltm.get("preferences", {}).get("color", {})
