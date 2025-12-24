@@ -1,7 +1,10 @@
 """
-සමාලි - AI Chat Companion
+සමාලි - AI Chat Companion (Replit Optimized)
 වයස 18, ගම්බද ගෑනු ලමයෙක්ගේ affectionate personality සහිත Telegram bot
+Replit + cron-job.org සඳහා සම්පූර්ණයෙන් optimized
 """
+from flask import Flask
+from threading import Thread
 
 import os
 import json
@@ -1203,5 +1206,57 @@ async def main():
         if 'app' in locals():
             await app.stop()
 
-if __name__ == "__main__":
+# ====== REPLIT KEEP-ALIVE SYSTEM ======
+from flask import Flask
+from threading import Thread
+import os
+
+# Create Flask web server for keep-alive
+web_app = Flask('')
+
+@web_app.route('/')
+def home():
+    return "🤖 සමාලි Bot is alive! Current time: " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+@web_app.route('/health')
+def health():
+    return "✅ OK", 200
+
+@web_app.route('/ping')
+def ping():
+    return "🏓 Pong! Bot is running", 200
+
+@web_app.route('/status')
+def status():
+    return {
+        "status": "online",
+        "bot": "සමාලි",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "platform": "Replit + cron-job.org"
+    }
+
+def run_web_server():
+    """Run Flask web server in a separate thread"""
+    port = int(os.environ.get("PORT", 8080))
+    web_app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
+
+# ====== MODIFIED MAIN FOR REPLIT ======
+def replit_main():
+    """Start both Flask server and Telegram bot for Replit"""
+    
+    print("=" * 50)
+    print("🚀 Starting සමාලි Bot on Replit...")
+    print("=" * 50)
+    
+    # Start Flask web server in background thread for keep-alive
+    print("🌐 Starting Flask web server for keep-alive...")
+    web_thread = Thread(target=run_web_server, daemon=True)
+    web_thread.start()
+    print(f"✅ Web server started on port {os.environ.get('PORT', 8080)}")
+    
+    # Start Telegram bot
+    print("🤖 Starting සමාලි Telegram bot...")
     asyncio.run(main())
+
+if __name__ == "__main__":
+    replit_main()
