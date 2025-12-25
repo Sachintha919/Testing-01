@@ -1,26 +1,98 @@
 {
   "developer": {
+    "mode": "production",
     "full_power": false,
     "max_credits": 200,
     "daily_reset_hour": 0,
-    "auto_backup": true,
-    "backup_interval_hours": 24,
     "credits_per_message": 1,
     "credits_refill_per_hour": 50,
+    "unlimited_credits_for_admin": true,
+    "can_override_stages": true,
+    "can_view_all_memory": true,
+    "password_required": true,
+    "default_password": "admin123",
+    
+    "backup": {
+      "auto_backup": true,
+      "backup_interval_hours": 24,
+      "keep_last_n_backups": 7,
+      "backup_location": "backups/",
+      "compress_backups": true,
+      "notify_on_backup": true
+    },
     
     "model_settings": {
       "allow_model_switch": false,
       "current_model": "gpt2",
       "fallback_models": ["distilgpt2", "microsoft/DialoGPT-small"],
       "max_ram_mb": 500,
-      "enable_compression": true
+      "enable_compression": true,
+      "max_response_tokens": 80,
+      "min_response_tokens": 10,
+      "temperature": 0.8,
+      "top_p": 0.9,
+      "frequency_penalty": 0.1,
+      "presence_penalty": 0.1
     },
     
     "debug": {
       "log_level": "INFO",
       "save_error_logs": true,
       "performance_monitoring": false,
-      "memory_usage_log": false
+      "memory_usage_log": false,
+      "log_file": "logs/debug.log",
+      "max_log_size_mb": 10,
+      "keep_logs_days": 7
+    },
+    
+    "security": {
+      "enable_rate_limiting": true,
+      "max_messages_per_minute": 15,
+      "max_messages_per_hour": 100,
+      "block_spam_messages": true,
+      "spam_keywords": ["http://", "https://", "www.", ".com", "buy", "sell", "free", "offer"],
+      "max_message_length": 500,
+      "ban_users": false,
+      "ban_duration_hours": 24
+    },
+    
+    "features": {
+      "enable_memory_export": true,
+      "enable_memory_import": true,
+      "enable_web_panel": true,
+      "enable_api": false,
+      "enable_webhooks": false,
+      "enable_scheduled_tasks": true,
+      "enable_auto_updates": false,
+      "enable_health_checks": true
+    },
+    
+    "performance": {
+      "max_concurrent_users": 50,
+      "response_timeout_seconds": 30,
+      "cleanup_interval_hours": 6,
+      "max_conversation_history": 20,
+      "max_memory_per_user_mb": 5,
+      "garbage_collection": true
+    },
+    
+    "notifications": {
+      "notify_on_error": true,
+      "notify_on_startup": true,
+      "notify_on_backup": true,
+      "notify_admin_on_critical": true,
+      "telegram_notifications": false,
+      "email_notifications": false
+    },
+    
+    "telegram": {
+      "parse_mode": "HTML",
+      "disable_web_page_preview": true,
+      "disable_notification": false,
+      "allow_group_chats": true,
+      "max_group_size": 100,
+      "enable_inline_queries": false,
+      "enable_voice_notes": false
     }
   }
 }
