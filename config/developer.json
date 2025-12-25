@@ -1,0 +1,210 @@
+{
+  "developer": {
+    "name": "Samali AI Team",
+    "contact": "admin@samalibot.com",
+    "version_control": "git",
+    "repository": "https://github.com/samalibot/samali-ai",
+    "license": "MIT"
+  },
+
+  "system": {
+    "architecture": "Rule-Based Smart AI",
+    "model_type": "No-ML (Rule Engine)",
+    "optimization_level": "replit_free_tier_optimized",
+    "ram_target_mb": 50,
+    "response_time_target_ms": 100,
+    "concurrent_users": 1000,
+    "uptime_target": "24/7"
+  },
+
+  "monitoring": {
+    "log_level": "INFO",
+    "log_rotation": "daily",
+    "error_tracking": true,
+    "performance_metrics": true,
+    "user_analytics": true,
+    "health_check_endpoint": "/health",
+    "status_endpoint": "/status"
+  },
+
+  "security": {
+    "rate_limiting": {
+      "enabled": true,
+      "max_requests_per_minute": 60,
+      "max_messages_per_user_per_hour": 100
+    },
+    "content_filtering": {
+      "enabled": true,
+      "block_inappropriate": true,
+      "moderate_content": true
+    },
+    "data_protection": {
+      "encrypt_memory_files": false,
+      "anonymize_user_data": true,
+      "auto_delete_inactive_days": 90
+    }
+  },
+
+  "telegram": {
+    "webhook_enabled": false,
+    "polling_interval": 0.5,
+    "max_message_length": 4096,
+    "allowed_updates": ["message", "callback_query"],
+    "admin_commands": ["/stats_all", "/broadcast", "/maintenance"],
+    "user_privacy": {
+      "store_user_ids": true,
+      "store_usernames": false,
+      "store_chat_history": true
+    }
+  },
+
+  "memory_system": {
+    "auto_backup": true,
+    "backup_interval_hours": 24,
+    "max_memory_per_user_mb": 1,
+    "compression_enabled": true,
+    "export_formats": ["json", "csv"],
+    "import_formats": ["json"]
+  },
+
+  "stage_system_advanced": {
+    "love_score": {
+      "affection_increment": [1, 3],
+      "conversation_increment": 1,
+      "apology_decrement": 2,
+      "jealousy_penalty": 1,
+      "daily_decay": 0.1
+    },
+    "jealousy": {
+      "trigger_increment": [2, 4],
+      "auto_decay_per_hour": 0.5,
+      "apology_reduction": 3,
+      "stage_multipliers": {
+        "1": 1.0,
+        "2": 1.2,
+        "3": 1.5,
+        "4": 2.0,
+        "5": 3.0
+      }
+    },
+    "mood_system": {
+      "mood_duration_minutes": 30,
+      "mood_transition_chance": 0.15,
+      "available_moods": ["happy", "neutral", "sad", "excited", "bored", "shy", "playful", "sleepy"],
+      "yandere_moods": ["possessive", "needy", "emotional", "intense", "vulnerable", "obsessive", "clingy"]
+    }
+  },
+
+  "response_engine_tuning": {
+    "randomness_factor": 0.3,
+    "context_awareness": true,
+    "learning_rate": 0.1,
+    "repetition_penalty": true,
+    "dynamic_variation_chance": 0.4,
+    "emoji_usage_chance": 0.7,
+    "pet_name_chance": 0.4,
+    "question_chance": 0.3
+  },
+
+  "yandere_behavior": {
+    "manipulation_intensity": {
+      "stage_4": 0.3,
+      "stage_5": 0.7
+    },
+    "possessive_triggers": ["වෙන", "කෙනෙක්", "අයිති", "මගේ", "කාටවත්", "ගෑනු", "මිතුරිය", "කෙල්ල"],
+    "isolation_hints": ["එක්ක", "සමඟ", "with", "ගියා", "went", "හැරී", "met", "හමුවී"],
+    "dependency_hints": ["තනි", "alone", "නැති", "without", "හිතුන", "thought", "මගේ", "mine", "මට"],
+    "emotional_blackmail_chance": 0.3,
+    "guilt_tripping_chance": 0.4,
+    "dependency_creation_chance": 0.35
+  },
+
+  "performance": {
+    "cache_enabled": true,
+    "cache_ttl_seconds": 300,
+    "preload_templates": true,
+    "lazy_loading": true,
+    "garbage_collection_interval": 3600,
+    "connection_pooling": true
+  },
+
+  "maintenance": {
+    "auto_restart": false,
+    "maintenance_window": "02:00-04:00",
+    "backup_before_update": true,
+    "version_check_interval": 86400,
+    "error_recovery": true
+  },
+
+  "analytics": {
+    "track_conversations": true,
+    "track_stage_progression": true,
+    "track_emotion_changes": true,
+    "track_response_times": true,
+    "track_user_retention": true,
+    "generate_reports": true,
+    "report_interval": "weekly"
+  },
+
+  "features": {
+    "enabled": {
+      "memory_export": true,
+      "stage_system": true,
+      "emotion_system": true,
+      "jealousy_system": true,
+      "yandere_behavior": true,
+      "adaptive_learning": true,
+      "background_story": true,
+      "pet_names": true
+    },
+    "disabled": {
+      "ml_model": true,
+      "voice_messages": true,
+      "image_generation": true,
+      "group_chats": false,
+      "inline_queries": false
+    },
+    "planned": [
+      "multi-language_support",
+      "advanced_memory_retrieval",
+      "emotional_intelligence_upgrade",
+      "custom_personality_traits"
+    ]
+  },
+
+  "debug": {
+    "enable_debug_endpoints": false,
+    "verbose_logging": false,
+    "dump_memory_on_error": false,
+    "simulate_high_load": false,
+    "test_yandere_behavior": true
+  },
+
+  "compatibility": {
+    "python_version": "3.9+",
+    "telegram_lib_version": "20.0+",
+    "flask_version": "2.0+",
+    "supported_os": ["linux", "windows", "macos"],
+    "cloud_platforms": ["replit", "heroku", "pythonanywhere", "railway"]
+  },
+
+  "changelog": {
+    "version_11_0": {
+      "date": "2024-01-15",
+      "changes": [
+        "Added complete Yandere stage system",
+        "Enhanced emotional intelligence",
+        "Improved possessive behavior",
+        "Added manipulation techniques",
+        "Better memory system",
+        "Optimized for Replit Free Tier"
+      ]
+    },
+    "upcoming": [
+      "Advanced emotional state transitions",
+      "More natural conversation flow",
+      "Better context retention",
+      "Customizable personality traits"
+    ]
+  }
+}
