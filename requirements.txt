@@ -1,8 +1,8 @@
 # Replit Optimized Requirements
 flask==2.3.3
-python-telegram-bot==20.7
 python-dotenv==1.0.0
 transformers==4.36.0
+python-telegram-bot==20.3
 
 # Lightweight torch for CPU
 torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
