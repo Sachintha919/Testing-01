@@ -50,12 +50,12 @@ SPEECH_ENGINE = BOT_CONFIG.get("advanced_speech_engine", {})
 
 # ====== TELEGRAM TOKEN ======
 # ටෙලිග්‍රෑම් ටෝකන් එක මෙතන දාන්න
-TELEGRAM_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE"  # ඔයාගේ ටෝකන් එක මෙතන දාන්න
+TELEGRAM_TOKEN = "8564776246:AAE7np8GxgcL8jJkBPQJs9psuQO5LEcOjYw"  # ඔයාගේ ටෝකන් එක මෙතන දාන්න
 
 # ====== DEVELOPER CONFIGURATION ======
 DEVELOPER_MODE = True  # Developer mode enable කරන්න
 DEVELOPER_PASSWORD = "Sacheex"  # Default password
-DEVELOPER_ID = 0  # ඔයාගේ ටෙලිග්‍රෑම් user ID එක මෙතන දාන්න
+DEVELOPER_ID = 7328291352  # ඔයාගේ ටෙලිග්‍රෑම් user ID එක මෙතන දාන්න
 
 # ====== PASSWORD HASHING ======
 def hash_password(password: str) -> str:
