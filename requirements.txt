@@ -1,20 +1,7 @@
-# Replit Optimized Requirements
-flask==2.3.3
+python-telegram-bot==20.7
 python-dotenv==1.0.0
-transformers==4.36.0
-python-telegram-bot==20.3
-
-# Lightweight torch for CPU
-torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cpu
-
-# Optimized transformers dependencies
-accelerate==0.25.0
-safetensors==0.4.1
-tokenizers==0.15.0
-
-# Utility
-psutil==5.9.6
-schedule==1.2.0
-
-# Note: Replit automatically installs these
+pytz==2024.1
+python-dateutil==2.8.2
+flask==3.0.2
+requests==2.31.0
+gunicorn==21.2.0
