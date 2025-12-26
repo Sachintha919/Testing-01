@@ -14,19 +14,14 @@ import hashlib
 from typing import Dict, List, Optional, Tuple, Any
 from difflib import SequenceMatcher
 from collections import defaultdict, deque
-import pytz
-from dateutil import parser
 
 # ====== TELEGRAM ONLY ======
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters, CommandHandler
-from dotenv import load_dotenv
 
 # ====== FLASK SERVER FOR REPLIT ======
 from flask import Flask
 from threading import Thread
-
-load_dotenv()
 
 # ====== CONFIGURATION FROM bot.json ======
 CONFIG_DIR = "config"
@@ -54,15 +49,13 @@ STAGE_SYSTEM = BOT_CONFIG.get("comprehensive_stage_system", {})
 SPEECH_ENGINE = BOT_CONFIG.get("advanced_speech_engine", {})
 
 # ====== TELEGRAM TOKEN ======
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-if not TELEGRAM_TOKEN:
-    print("❌ TELEGRAM_BOT_TOKEN සොයාගත නොහැකි විය!")
-    exit(1)
+# ටෙලිග්‍රෑම් ටෝකන් එක මෙතන දාන්න
+TELEGRAM_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE"  # ඔයාගේ ටෝකන් එක මෙතන දාන්න
 
 # ====== DEVELOPER CONFIGURATION ======
-DEVELOPER_MODE = os.getenv("DEVELOPER_MODE", "false").lower() == "true"
-DEVELOPER_PASSWORD = os.getenv("DEVELOPER_PASSWORD", "Sacheex")  # Default password
-DEVELOPER_ID = int(os.getenv("DEVELOPER_ID", "0"))
+DEVELOPER_MODE = True  # Developer mode enable කරන්න
+DEVELOPER_PASSWORD = "Sacheex"  # Default password
+DEVELOPER_ID = 0  # ඔයාගේ ටෙලිග්‍රෑම් user ID එක මෙතන දාන්න
 
 # ====== PASSWORD HASHING ======
 def hash_password(password: str) -> str:
